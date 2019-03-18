@@ -1,4 +1,30 @@
-<% @contacts.each do |contact| %>
-  <%= contact.name %>, <%= contact.email %>, <%= contact.phone %>
+<div class="m-3">
+  <%= form_tag contacts_path, method: :get do %>
+  <%= hidden_field_tag :query,
+      params[:query] = 'Justus' %>
+  <%= button_tag 'Find Justus', class: "btn btn-primary mb-2" %>
+  <% end %>
+
+  <%= form_tag contacts_path, method: :get do %>
+    <%= check_box_tag :name,
+    params[:name] = 'Justus' %> Justus
+    <%= check_box_tag :email,
+    params[:email] = 'Florien.Rauws@hetgeldersorkest.nl' %> Florien
+  <%= button_tag 'Search', class: "btn btn-primary mb-2" %>
+  <% end %>
+
+  <%= form_tag contacts_path, method: :get do %>
+  <%= text_field_tag :query,
+      params[:query] = '',
+      class: "form-control-sm mb-4",
+      placeholder: "Find a contact"
+    %>
+  <% end %>
+  <% @contacts.each do |contact| %>
+  <%= contact.name %>,
+  <%= contact.email %>,
+  <%= contact.phone %>
   <br>
-<% end %>
+  <% end %>
+</div>
+
